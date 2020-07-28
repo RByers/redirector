@@ -1,7 +1,6 @@
 # Modified from http://blog.dantup.com/2010/01/generic-redirection-script-for-google-app-engine
 
-PLUS_PATH = '/plus'
-PLUS_URL = 'https://plus.google.com/+RickByers'
+SOCIAL_URL = 'https://twitter.com/RickByers'
 GITHUB_URL = 'https://rbyers.github.io'
 
 from google.appengine.ext import webapp
@@ -21,13 +20,9 @@ class MainHandler(webapp.RequestHandler):
 
 
 def get_redirect_url(path):
-    # If the path starts with "plus", redirect to G+
-    if path.startswith(PLUS_PATH):
-        return PLUS_URL + path[len(PLUS_PATH):len(path)]
-
-    # Redirect the empty URL to G+
+    # Redirect the empty URL to my Social URL
     if not path or path == '/':
-        return PLUS_URL
+        return SOCIAL_URL
 
     # Redirect everything else to GitHub
     return GITHUB_URL + path
